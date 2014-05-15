@@ -17,7 +17,7 @@ public class Helper
     public static void addToUserTable(CustomUser user)
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
-        string insertCommand = "INSERT INTO Users (FirstName, LastName, Address, Email, Phone, Hash_Id) VALUES('" + user.FirstName + "','" + user.LastName + "','" + user.Address + "','" + user.Email + "','"+user.Phone+"','"+user.Hash_Id+"')";
+        string insertCommand = "INSERT INTO Users (FirstName, LastName, Address, Phone, Email, Hash_Id) VALUES('" + user.FirstName + "','" + user.LastName + "','" + user.Address + "','" + user.Phone + "','" + user.Email + "','" + user.Hash_Id + "')";
         con.Open();
         SqlCommand cmd = new SqlCommand(insertCommand, con);
         cmd.ExecuteNonQuery();
