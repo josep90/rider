@@ -42,7 +42,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="container">
-        <h1>Offer a ride now</h1>
+        <div class="container content">
+            <h1>Offer a ride now</h1>
         <div class="form-group">
             <label for="location">Your Location:</label>
             <input class="form-control" type="text" id="location" placeholder="your location" />
@@ -63,4 +64,5 @@
         <button type="button" id="offer-ride" class="btn btn-success">Offer ride</button>
         <div id="search-results"></div>
     </div>
+        </div>
 </asp:Content>

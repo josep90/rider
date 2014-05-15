@@ -7,6 +7,13 @@ body {
     font-size: 12px;
 }
 .body-content {
+
+}
+.content{
+    margin-top: 50px;
+}
+.nav > li > a:hover{
+    background: none!important;
 }
 input,
 select,
@@ -28,7 +35,7 @@ textarea {
 }
 #box-find-ride, #box-offer-ride{
     position:absolute;
-    bottom: 30%;
+    bottom: 150px;
 }
 #box-find-ride{
     left: 0;
@@ -37,10 +44,17 @@ textarea {
     right: 0;
 }
 #home{
-    height: 920px;
+    height: 775px;
     background-image:url(/images/front-image.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
+}
+#about, #contact{
+    padding-top: 25px;
+    font-size: 1.7em;
+}
+#about h2, #contact h2{
+    font-size: 2em;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -54,7 +68,7 @@ textarea {
 }
 @media screen and (max-width: 980px){
     #box-find-ride, #box-offer-ride{
-        position: relative;
+        bottom: 40%;
         
     }
 }

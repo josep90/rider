@@ -4,12 +4,14 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Providers.Entities;
 
 /// <summary>
 /// Summary description for Helper
 /// </summary>
 public class Helper
 {
+    private static string tempId = "-1";
 	public Helper()
 	{
 		
@@ -23,25 +25,23 @@ public class Helper
         cmd.ExecuteNonQuery();
         con.Close();
     }
-    public static int getCustomUserId(String hash)
+    public static void startSession()
+    {
+
+    }
+    public static string getCustomUserId(string hash)
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
-        string selectstatement = "SELECT Id FROM Users WHERE Hash_Id = '" + hash + "'";
+        string selectstatement = "SELECT Id FROM Users WHERE Username = '" + hash + "' ";
         con.Open();
-        //will pull all rides, filter handled by client
         SqlCommand selectcommand = new SqlCommand(selectstatement, con);
         SqlDataReader reader = selectcommand.ExecuteReader();
-        reader.Read();
-        int value;
-        try
-        {
-            value = int.Parse(reader["Id"].ToString());
-        }
-        catch
-        {
-            value  = 1;
+        string value = "-1";
+        while(reader.Read()){
+            value = reader["Id"].ToString();
         }
         con.Close();
         return value;
     }
+    
 }

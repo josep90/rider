@@ -4,8 +4,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script src="/Scripts/locations.js" type="text/javascript"></script>
 </asp:Content>
-<asp:Content ID="content" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="search-wrapper">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container content">
+        <h1>Find a Ride</h1>
+        <div class="search-wrapper">
         <div class="form-group">
             <label for="location-start">From:</label>
             <input class="form-control" type="text" id="location-start" placeholder="your location" />
@@ -22,5 +24,6 @@
         <button type="button" id="get-a-ride" class="btn btn-success">Get a ride</button>
         <br />
         <div id="search-results"></div>
+    </div>
     </div>
 </asp:Content>

@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <div class="container content">
+        <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
@@ -13,7 +14,7 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label">Firstname</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="FirstName" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="FirstName" CssClass="form-control" CausesValidation="True" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="FirstName"
                     CssClass="text-danger" ErrorMessage="The firstname field is required." />
             </div>
@@ -21,7 +22,7 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="LastName" CssClass="col-md-2 control-label">Lastname</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="LastName" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="LastName" CssClass="form-control" CausesValidation="True" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="LastName"
                     CssClass="text-danger" ErrorMessage="The lastname field is required." />
             </div>
@@ -81,6 +82,7 @@
                 <asp:Button ID="Button1" runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
             </div>
         </div>
+    </div>
     </div>
 </asp:Content>
 

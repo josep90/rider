@@ -8,12 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - My ASP.NET Application</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
     <link href='http://fonts.googleapis.com/css?family=Montaga' rel='stylesheet' type='text/css'>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <!--<webopt:bundlereference runat="server" path="~/Content/css" />-->
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -54,12 +53,25 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a href="/#about">About</a></li>
+                        <li><a href="/#contact">Contact</a></li>
                         <li><a runat="server" href="~/rides/lookup">Find Rides</a></li>
                         <li><a runat="server" href="~/rides/Offer">Give Rides</a></li>
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <% if(Session["UserId"] == null){ %>
+                    <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                    <% }else{ %>
+                    <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Session["Username"].ToString()  %>!</a></li>
+                                <li>
+                                    <a runat="server" href="~/Account/Login" title="Logout">Logout</a>
+                                </li>
+                            </ul>
+                    <% } %>
+                    <!--<asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Register">Register</a></li>
@@ -74,7 +86,7 @@
                                 </li>
                             </ul>
                         </LoggedInTemplate>
-                    </asp:LoginView>
+                    </asp:LoginView>-->
                 </div>
             </div>
         </div>
