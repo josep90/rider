@@ -18,6 +18,10 @@ public partial class Api_rides : System.Web.UI.Page
         }else if(Request.QueryString["set"]!=null && Request.QueryString["set"]== "offer"){
             OfferRide();
         }
+        else
+        {
+            Out(new Data { message = Session["UserId"].ToString() }, 200);
+        }
         Response.End();
     }
     private void Out(Data obj, int status)
@@ -25,8 +29,9 @@ public partial class Api_rides : System.Web.UI.Page
         var json = new JavaScriptSerializer().Serialize(obj);
         Response.Clear();
         Response.ContentType = "application/json; charset=utf-8";
-        Response.StatusCode = 400;
+        Response.StatusCode = status;
         Response.Write(json);
+        Response.End();
     }
     private void GetAvailableRides()
     {
@@ -74,28 +79,36 @@ public partial class Api_rides : System.Web.UI.Page
         con.Close();
         Out(new Data(), 200);
     }
-    private Boolean OfferRide()
+    private void OfferRide()
     {
+        if (!User.Identity.IsAuthenticated)
+        {
+            Out(new Data { message = "You must login to offer a ride." }, 400);
+            
+        }
         String latitude = Request.QueryString["latitude"];
         String longitude = Request.QueryString["longitude"];
         String address = Request.QueryString["address"];
         decimal rate = Decimal.Parse(Request.QueryString["rate"]);
-        int status = int.Parse(Request.QueryString["status"]);
+        //default is available
+        int status = 0;
         int capacity = int.Parse(Request.QueryString["capacity"]);
         float maxDistance = float.Parse(Request.QueryString["max_distance"]);
         //user id
+        String userId = (Session["UserId"] != null) ? (Session["UserId"]).ToString() : "-1";
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
-        string insertCommand = "INSERT INTO offers (Latitude, Longitude, Address, Rate, Status, Capacity, MaxDistance, User_Id) VALUES('" + latitude + "','" + longitude + "','" + address + "','" + rate + "','" + status + "','" + capacity + "','" + maxDistance + "','" + Session["UserId"].ToString()+ "')";
+        string insertCommand = "INSERT INTO Offers (Latitude, Longitude, Address, Rate, Status, Capacity, MaxDistance, User_Id) VALUES('" + latitude + "','" + longitude + "','" + address + "','" + rate + "','" + status + "','" + capacity + "','" + maxDistance + "','" + userId+ "')";
         con.Open();
         SqlCommand cmd = new SqlCommand(insertCommand, con);
         cmd.ExecuteNonQuery();
         con.Close();
-        return false;
+        Out(new Data { message = "Success!"}, 200);
     }
 }
 public class Data
 {
     public List<Ride> rides { get; set; }
+    public String message { get; set; }
     public Data()
     {
         rides = new List<Ride>();

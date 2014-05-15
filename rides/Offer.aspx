@@ -4,20 +4,24 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     <script type="text/javascript">
         (function ($) {
-            var autocomplete;
+            var autocomplete, objLocation;
             function _submitRequest() {
                 var extra = [];
                 extra.push("rate="+$('#rate').val());
-                extra.push("passengers=" + $('#passengers').val());
-                extra.push("distance=" + $('#distance').val());
+                extra.push("capacity=" + $('#passengers').val());
+                extra.push("max_distance=" + $('#distance').val());
+                extra.push("latitude=" + objLocation.geometry.location.k);
+                extra.push("longitude=" + objLocation.geometry.location.A);
+                extra.push("address="+ objLocation.formatted_address);
                 $.ajax({
-                    url: '/Api/rides?offer=true&location='+autocomplete.geometry.location.k+","+autocomplete.geometry.A+"&"+extra.join('&'),
+                    url: '/Api/rides?set=offer&'+extra.join('&'),
                     success: function (response) {
                         alert("You are now offering a ride.");
                         window.location.href = "/";
                     },
                     error: function (err) {
-                        alert('oops we have an error.');
+                        var obj = $.parseJSON(err.responseText);
+                        alert('oops we have an error. '+ obj.message);
                         console.log(err);
                     }
                 })
@@ -26,7 +30,10 @@
                 autocomplete = new google.maps.places.Autocomplete(
                     (document.getElementById('location')),
                     { types: ['geocode'] });
-                $('#get-a-ride').on('click', function () {
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    objLocation = autocomplete.getPlace();
+                });
+                $('#offer-ride').on('click', function () {
                     _submitRequest();
                 });
             });

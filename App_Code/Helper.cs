@@ -32,14 +32,16 @@ public class Helper
         SqlCommand selectcommand = new SqlCommand(selectstatement, con);
         SqlDataReader reader = selectcommand.ExecuteReader();
         reader.Read();
-        con.Close();
+        int value;
         try
         {
-            return int.Parse(reader["Id"].ToString());
+            value = int.Parse(reader["Id"].ToString());
         }
         catch
         {
-            return -1;
+            value  = 1;
         }
+        con.Close();
+        return value;
     }
 }
