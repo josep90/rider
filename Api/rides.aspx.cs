@@ -77,7 +77,7 @@ public partial class Api_rides : System.Web.UI.Page
     }
     private void RequestRide()
     {
-       if (!User.Identity.IsAuthenticated)
+       if (Session["UserId"] == null)
            Out(new Data { message = "You must be logged in to requets a ride!"}, 400);
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
         con.Open();
@@ -94,7 +94,7 @@ public partial class Api_rides : System.Web.UI.Page
     }
     private void OfferRide()
     {
-        if (!User.Identity.IsAuthenticated)
+        if (Session["UserId"] == null)
         {
             Out(new Data { message = "You must login to offer a ride." }, 400);
             
