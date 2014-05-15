@@ -24,7 +24,14 @@ public partial class Api_rides : System.Web.UI.Page
         }
         else
         {
-            Out(new Data { message = Session["UserId"].ToString() }, 200);
+            try
+            {
+                Out(new Data { message = Session["UserId"].ToString() }, 200);
+            }
+            catch
+            {
+                Out(new Data { message = "User id not in session." }, 200);
+            }
         }
         Response.End();
     }
