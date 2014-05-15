@@ -18,10 +18,6 @@ public partial class Api_rides : System.Web.UI.Page
         }else if(Request.QueryString["set"]!=null && Request.QueryString["set"]== "offer"){
             OfferRide();
         }
-        else if (Request.QueryString["request"] != null && Request.QueryString["request"] == "ride")
-        {
-            RequestRide();
-        }
         else
         {
             Out(new Data { message = Session["UserId"].ToString() }, 200);
@@ -56,10 +52,8 @@ public partial class Api_rides : System.Web.UI.Page
                 latitude = reader["Latitude"].ToString(),
                 longitude = reader["Longitude"].ToString(),
                 rate = reader["Rate"].ToString(),
-                max_distance = reader["MaxDistance"].ToString(),
-                max_capacity = reader["Capacity"].ToString(),
-                user_id = reader["User_Id"].ToString(),
-                username = reader["Firstname"].ToString()
+                userId = reader["UserId"].ToString(),
+                userName = reader["Firstname"].ToString()
             };
 
             data.rides.Add(ride);
@@ -70,11 +64,12 @@ public partial class Api_rides : System.Web.UI.Page
     private void RequestRide()
     {
        if (!User.Identity.IsAuthenticated)
-           Out(new Data { message = "You must be logged in to requets a ride!"}, 400);
+            Out(new Data(), 400);
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
         con.Open();
         String from = Request.QueryString["from"];
         String to = Request.QueryString["to"];
+        String status = Request.QueryString["status"];
         String offerId = Request.QueryString["offer_id"];
         String userId = Session["UserId"].ToString();
         String tripDistance = Request.QueryString["trip_distance"];
@@ -82,7 +77,7 @@ public partial class Api_rides : System.Web.UI.Page
         SqlCommand cmd = new SqlCommand(insertStatement, con);
         cmd.ExecuteNonQuery();
         con.Close();
-        Out(new Data { message = "Your ride has been requested! Your rider will be notified soon. Thanks!"}, 200);
+        Out(new Data(), 200);
     }
     private void OfferRide()
     {
