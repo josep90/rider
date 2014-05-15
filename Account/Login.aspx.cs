@@ -29,6 +29,7 @@ public partial class Account_Login : Page
                 {
                     IdentityHelper.SignIn(manager, user, RememberMe.Checked);
                     Session["UserId"] = Helper.getCustomUserId(User.Identity.GetUserId());
+                    Session["Userid"] = Helper.getCustomUserId(User.Identity.GetUserId());
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
                 else

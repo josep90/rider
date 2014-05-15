@@ -1,6 +1,5 @@
-﻿/* Move down content because we have a fixed navbar that is 50px tall */
+﻿
 body {
-    padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Montaga', serif!important;
 }
@@ -8,15 +7,40 @@ body {
     font-size: 12px;
 }
 .body-content {
-    margin-top: 20px;
-    padding: 15px;
 }
-
-/* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,
 textarea {
     max-width: 280px;
+}
+.section{
+    position: relative;
+}
+.navbar{
+    background: #000;
+}
+.navbar a{
+    color: #fff;
+}
+.front.jumbotron{
+    color: #fff;
+    background: none;
+}
+#box-find-ride, #box-offer-ride{
+    position:absolute;
+    bottom: 30%;
+}
+#box-find-ride{
+    left: 0;
+}
+#box-offer-ride{
+    right: 0;
+}
+#home{
+    height: 920px;
+    background-image:url(/images/front-image.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -26,5 +50,11 @@ textarea {
     }
     .body-content {
         padding: 0;
+    }
+}
+@media screen and (max-width: 980px){
+    #box-find-ride, #box-offer-ride{
+        position: relative;
+        
     }
 }
