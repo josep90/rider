@@ -82,15 +82,20 @@
                  "<td><button type='button' class='btn btn-mini btn-success request'>Request</button></td>" +
                 "</tr>";
         }
+        if(rides.length < 1){
+            html = "<h3>Out of luck! No rides match your criteria.</h3>"
+        }
         html += "</tbody></table>";
         $('#search-results').html(html);
     }
     function getAvailableRides() {
+        $('#search-results').html("Looking for rides...");
         $.ajax({
             url: '/Api/rides?find=rides',
             success: filterResults,
             error: function (error) {
-                alert('Could not find rides');
+                $('#search-results').html("Error. Check console.");
+                alert('Error finding rides');
             }
         });
     }
