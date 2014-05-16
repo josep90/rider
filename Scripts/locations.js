@@ -101,9 +101,11 @@
     }
     function requestRideOffer(parentEle, offerId) {
         var params = [];
+        
         params.push("from=" + $('#location-start').val());
         params.push("to=" + $('#location-end').val());
-        params.push("trip_distance="+tripDistance);
+        //in mi
+        params.push("trip_distance=" + Math.round(parseFloat(tripDistance * 0.000621371)));
         params.push("offer_id=" + offerId);
         $.ajax({
             url: '/Api/rides?request=ride&' + params.join('&'),

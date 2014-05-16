@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - Rider Connect</title>
 
     <link href='http://fonts.googleapis.com/css?family=Montaga' rel='stylesheet' type='text/css'>
     <!--<webopt:bundlereference runat="server" path="~/Content/css" />-->

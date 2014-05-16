@@ -78,6 +78,22 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="SecQuestion" CssClass="col-md-2 control-label">Security Question</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="SecQuestion" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="SecQuestion"
+                    CssClass="text-danger" ErrorMessage="The Security Question field is required." />
+            </div>
+        </div>
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="SecAnswer" CssClass="col-md-2 control-label">Security Answer</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="SecAnswer" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="SecAnswer"
+                    CssClass="text-danger" ErrorMessage="The Security Answer field is required." />
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button ID="Button1" runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
             </div>

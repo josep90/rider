@@ -86,7 +86,7 @@ public partial class Api_rides : System.Web.UI.Page
         String offerId = Request.QueryString["offer_id"];
         String userId = Session["UserId"].ToString();
         String tripDistance = Request.QueryString["trip_distance"];
-        string insertStatement = "INSERT INTO Offer_Lock (From, To, Trip_Distance Status, Offer_Id, User_Id ) VALUES( '" + from + "', '" + to + "' ,'" + tripDistance +"' , 0 , "+ offerId + " ," + userId + " )";
+        string insertStatement = "INSERT INTO Offer_Lock (\"From\", \"To\", \"Trip_Distance\", \"Status\", \"Offer_Id\", \"User_Id\" ) VALUES( '" + from + "', '" + to + "' ,'" + tripDistance + "' , 0 , " + offerId + " ," + userId + " )";
         SqlCommand cmd = new SqlCommand(insertStatement, con);
         cmd.ExecuteNonQuery();
         con.Close();
