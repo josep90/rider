@@ -111,16 +111,18 @@
                         <td class="width200">
                             <asp:Label ID="ToLabel" runat="server" Text='<%# Eval("TO").ToString() %>' />
                         </td>
-                        <td class="">
+                        <td class="col-right">
                             <asp:Label ID="TripDistanceLabel" runat="server" Text='<%# Eval("Trip_distance").ToString()  + " mi." %>' />
                         </td>
-                        <td class="">
-                            <asp:Label ID="StatusLabel" runat="server" Text='<%# (Eval("Status").ToString() == "0") ? "New" : ((Eval("Status").ToString() == "1") ? "Accepted" : ((Eval("Status").ToString() == "2") ? "Rejected" : "Locked"))  %>' />
+                        <td class="col-center">
+                            <asp:Label ID="StatusLabel" runat="server" 
+                                Text='<%# (Eval("Status").ToString() == "0") ? "New" : ((Eval("Status").ToString() == "1") ? "Approved" : ((Eval("Status").ToString() == "2") ? "Denied" : ((Eval("Status").ToString() == "3") ? "Reserved" : "Closed")))  %>' /></td>
+            
                         </td>
 
                         <td>
-                            <asp:Button ID="Accept" runat="server" CommandName="Accept" Text="Accept" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Enabled='<%# (Eval("maxstatus").ToString() != "3" && Eval("Status").ToString() != "1") %>' />
-                            <asp:Button ID="Reject" runat="server" CommandName="Reject" Text="Reject" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Enabled='<%# (Eval("maxstatus").ToString() != "3" && Eval("Status").ToString() != "2") %>' />
+                            <asp:Button ID="Accept" runat="server" CommandName="Accept" Text="Accept" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Visible='<%# ((Eval("maxstatus").ToString() != "3" && Eval("maxstatus").ToString() != "4") && Eval("Status").ToString() != "1") %>' />
+                            <asp:Button ID="Reject" runat="server" CommandName="Reject" Text="Reject" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Visible='<%# ((Eval("maxstatus").ToString() != "3" && Eval("maxstatus").ToString() != "4") && Eval("Status").ToString() != "2") %>' />
                         </td>
 
                     </ItemTemplate>

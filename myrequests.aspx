@@ -81,7 +81,8 @@
                         <asp:Label ID="AmountLabel" runat="server" Text='<%# Eval("Amount","{0:c}") %>' />
                     </td>
                     <td class="col-center">
-                        <asp:Label ID="StatusLabel" runat="server" Text='<%# (Eval("Status").ToString() == "0") ? "New" : ((Eval("Status").ToString() == "1") ? "Accepted" : ((Eval("Status").ToString() == "2") ? "Rejected" : "Locked"))  %>' /></td>
+                        <asp:Label ID="StatusLabel" runat="server" 
+                            Text='<%# (Eval("Status").ToString() == "0") ? "Waiting for Approval" : ((Eval("Status").ToString() == "1") ? "Approved" : ((Eval("Status").ToString() == "2") ? "Denied" : ((Eval("Status").ToString() == "3") ? "Reserved" : "Closed")))  %>' /></td>
                     <td class="col-center">
                         <asp:Button ID="Pay" runat="server" CommandName="Pay" Text="Confirm" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Visible='<%# (Eval("Status").ToString() == "1") %>' />
                         <asp:Button ID="Close" runat="server" CommandName="Close" Text="Review" CommandArgument='<%# Eval("Offer_Lock_ID") %>' Visible='<%# (Eval("Status").ToString() == "3") %>' />
