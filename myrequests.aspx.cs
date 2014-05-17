@@ -30,7 +30,7 @@ public partial class MyRequests : System.Web.UI.Page
             string id = e.CommandArgument.ToString();
             Response.Redirect("~/review?id=" + id);
         }    
-        //DataList1.DataBind();
+        DataList1.DataBind();
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
