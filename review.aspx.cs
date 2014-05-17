@@ -53,5 +53,7 @@ public partial class Review : System.Web.UI.Page
         cmd = new SqlCommand(sql, con);
         cmd.ExecuteNonQuery();
         con.Close();
+
+        Response.Redirect("~/messages");
     }
 }

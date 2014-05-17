@@ -15,17 +15,10 @@ public partial class Default2 : System.Web.UI.Page
     {
         //Checking whether user has logged in or not , if the user has not logged in or the session has expired,
         //user must relogin so the user is redirected automatically
-        if (Session["UserId"] != null)
-        {
-            //this.Master.PageH1Text = Session["FirstName"].ToString();
-        }
-
-        else
+        if (Session["UserId"] == null)
         {
             Response.Redirect("~/");
         }
-        
-
     }
     protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
     {
