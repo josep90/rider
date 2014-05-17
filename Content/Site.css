@@ -56,6 +56,9 @@ textarea {
 #about h2, #contact h2{
     font-size: 2em;
 }
+.navbar-toggle .icon-bar{
+    background-color: #fff;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

@@ -49,6 +49,9 @@
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
                     if you don't have a local account.
                 </p>
+                <p>
+                    <asp:HyperLink runat="server" ID="HyperLink1" ViewStateMode="Disabled" NavigateUrl="~/Account/ForgotPassword.aspx">Forgot password</asp:HyperLink>
+                </p>
             </section>
         </div>
 

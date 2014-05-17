@@ -11,7 +11,7 @@ public partial class Account_Register : Page
     protected void CreateUser_Click(object sender, EventArgs e)
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
-        string insertCommand = "INSERT INTO Users (FirstName, LastName, Address, Phone, Email, Username, Password) VALUES('" +FirstName.Text + "','" + LastName.Text + "','" + Address.Text + "','" + Phone.Text + "','" + Email.Text + "','" + UserName.Text + "', '"+ Password.Text +"')";
+        string insertCommand = "INSERT INTO Users (FirstName, LastName, Address, Phone, Email, Username, Password, Security_Question, Security_Answer) VALUES('" +FirstName.Text + "','" + LastName.Text + "','" + Address.Text + "','" + Phone.Text + "','" + Email.Text + "','" + UserName.Text + "', '"+ Password.Text +"', '"+ SecQuestion.Text +"', '"+SecAnswer.Text+"')";
         con.Open();
         SqlCommand cmd = new SqlCommand(insertCommand, con);
         cmd.ExecuteNonQuery();

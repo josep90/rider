@@ -58,7 +58,7 @@
                 </asp:PlaceHolder>
 
                 <asp:PlaceHolder runat="server" ID="changePasswordHolder" Visible="false">
-                    <p>You're logged in as <strong><%: User.Identity.GetUserName() %></strong>.</p>
+                    <p>You're logged in as <strong><%: Session["Username"] %></strong>.</p>
                     <div class="form-horizontal">
                         <h4>Change Password Form</h4>
                         <asp:ValidationSummary runat="server" ShowModelStateErrors="true" CssClass="text-danger" />
