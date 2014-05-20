@@ -14,6 +14,17 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <% if(Session["UserId"]!= null && int.Parse(Session["UserId"].ToString())==25){ %>
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                $('#admin-button').on('click', function () {
+                    $('#admin-menu').toggle();
+                });
+            });
+        }(jQuery))
+    </script>
+    <% } %>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -69,7 +80,7 @@
                             </ul>
                     <% }else{ %>
                     <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Session["Username"].ToString()  %>!</a></li>
+                                <li><a runat="server" href="~/Account/Profile" title="Manage your account">Hello, <%: Session["Username"].ToString()  %>!</a></li>
                                 <li>
                                     <a runat="server" href="~/Account/Login" title="Logout">Logout</a>
                                 </li>
@@ -105,5 +116,16 @@
             </footer>
         </div>
     </form>
+    <% if(Session["UserId"]!= null && int.Parse(Session["UserId"].ToString()) == 25){ %>
+    <div style="position: fixed; bottom:0; right:0;min-width: 150px;">
+        <button id="admin-button" type="button" class="btn btn-min btn-info" style="position:relative;">Admin Menu</button>
+        <div id="admin-menu" style="position:relative; padding: 20px 5px;background:#eef0f2;">
+            <ul style="list-style:none; line-height: 2em;">
+                <li><a href="/Account/Admin/MyProfile_Admin">Profile</a></li>
+                <li><a href="/Account/Admin/Allusers_Admin">Users</a></li>
+            </ul>
+        </div>
+    </div>
+    <%} %>
 </body>
 </html>

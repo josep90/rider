@@ -16,7 +16,7 @@ public class Helper
 	{
 		
 	}
-    public static void addToUserTable(CustomUser user)
+    /*public static void addToUserTable(CustomUser user)
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
         string insertCommand = "INSERT INTO Users (FirstName, LastName, Address, Phone, Email, Hash_Id) VALUES('" + user.FirstName + "','" + user.LastName + "','" + user.Address + "','" + user.Phone + "','" + user.Email + "','" + user.Hash_Id + "')";
@@ -28,7 +28,7 @@ public class Helper
     public static void startSession()
     {
 
-    }
+    }*/
     public static string getCustomUserId(string hash)
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["RidersConnectionConnectionString"].ConnectionString);
